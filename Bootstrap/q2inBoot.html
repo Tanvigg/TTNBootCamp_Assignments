@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+     
+
+    </head>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .top-menu{
+            background-color: #f1e7e7;
+            height: 50px;
+            text-decoration: none;
+            padding: 4px;
+        }
+        .top-menu a{
+            text-decoration: none;
+            color: #1f807e;
+            font-family: Arial, Helvetica, sans-serif;  
+        }
+        .box{
+            margin: 5% 30%;
+            border:1px solid #524b4a;
+            border-radius: 8px;
+            
+        
+        }
+        .box-content{
+            padding: 5px 20px;
+
+
+
+        }
+        .box-content label{
+            margin-top: 8px;
+            font-size: 13px;
+	        color: #292828;
+            padding:0px 8px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .box-content input{
+            margin-top: -2px;
+        }
+
+        .bug{
+            height: 60px;
+            background-color: grey;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+	       
+
+        }
+
+        .form-end{
+            background-color: grey;
+            height: 10vh;
+            width: 100%;
+            margin-left: 0%;
+             color: white;
+             border-bottom-right-radius: 8px;
+             border-bottom-left-radius: 8px;
+        }
+
+
+
+    </style>
+
+    
+    <body>
+        <div class="container mt-4 p-2 top-menu">	
+            <div class="row">
+                <div class="col-lg-6"> 
+                     <a href ="https://www.tothenew.com/"> <h3> TO THE NEW </h3> </a></div>
+           
+            <div class="col-lg-3"><a class="float-right ml-5" id="home" href ="#">Home</a></div>
+            <div class="col-lg-3"><a href= "#">Quick</a></div>
+        </div>
+    </div>
+
+    
+    <div class="box">   
+        <div class="col bug">
+            <h3 class="pt-3">Bug Report</h3>
+        </div>
+        <form class="box-content">
+       
+            <label for="title">Title:*</label>
+            <input type="text" class="form-control" id="title"  name="title">
+
+            <label for="description">Description:*</label>
+            <textarea type="text" class="form-control" rows="5" id="desc"  name="desc"></textarea>
+            
+            <label for="operating system">Operating system:</label>
+            <select class="form-control">
+                <option value="Windows XP">Windows XP</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+
+
+              
+
+
+              <label for="Product:">Product:*</label>
+              <select class="form-control">
+                <option value="Formoid">Formoid</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+
+              <label for="version">Version:</label>
+              <input type="text" class="form-control" id="title"  name="title" style="width: 30%;">
+
+              <label for="license">License:</label>
+              <div class="row">
+              <br>
+              <div class="col-lg-6"> <label class="radio-inline"><input type="radio" name="optradio" checked>Free</label></div>
+             
+              <div class="col-lg-6"><label class="radio-inline"><input type="radio" name="optradio" >Business</label></div>
+            </div>
+
+            <label for="Severity:">Severity:*</label>
+            <select class="form-control">
+              <option value="   ">Critical</option>
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+
+            <label for="Attachment:">Attachment:*</label>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+
+               
+                  
+           
+
+
+    </form>
+             <div class="row form-end">
+                <div class="col-lg-12 pt-3 pr-5">
+                    <button class="btn btn-success float-right">Send</button>
+                </div>
+                </div>
+    </div>
+        
+    </body>
+    </html>
