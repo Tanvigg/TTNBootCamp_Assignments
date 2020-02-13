@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<script>
+    var emp_obj = [
+
+
+        {
+            "age": 34,
+            "name": "Andrea Vance",
+            "dob": "2016-05-19T06:16:05 -06:-30",
+            "salary": 8456
+        },
+        {
+            "age": 35,
+            "name": "Margo Barnett",
+            "dob": "2019-11-05T11:53:28 -06:-30",
+            "salary": 4453
+        },
+        {
+            "age": 29,
+            "name": "Ramirez Savage",
+            "dob": "2015-05-17T09:41:49 -06:-30",
+            "salary": 9286
+        },
+        {
+            "age": 24,
+            "name": "Goodman Mercado",
+            "dob": "2019-07-27T09:37:52 -06:-30",
+            "salary": 8251
+        },
+        {
+            "age": 28,
+            "name": "Essie Mills",
+            "dob": "2018-12-24T08:25:02 -06:-30",
+            "salary": 8215
+        },
+        {
+            "age": 31,
+            "name": "Brooke Tyler",
+            "dob": "2016-11-26T09:12:03 -06:-30",
+            "salary": 7541
+        },
+        {
+            "age": 36,
+            "name": "Corrine Witt",
+            "dob": "2019-04-05T02:43:43 -06:-30",
+            "salary": 845
+        },
+        {
+            "age": 31,
+            "name": "Byers Turner",
+            "dob": "2015-07-05T08:05:25 -06:-30",
+            "salary": 293
+        },
+        {
+            "age": 22,
+            "name": "Deleon Nash",
+            "dob": "2017-07-15T05:06:26 -06:-30",
+            "salary": 2592
+        },
+        {
+            "age": 35,
+            "name": "Sears Terrell",
+            "dob": "2019-11-29T07:21:59 -06:-30",
+            "salary": 2182
+        },
+        {
+            "age": 39,
+            "name": "Meghan Justice",
+            "dob": "2018-02-07T01:38:59 -06:-30",
+            "salary": 6737
+        },
+        {
+            "age": 26,
+            "name": "Evelyn Barlow",
+            "dob": "2018-07-20T05:20:05 -06:-30",
+            "salary": 6288
+        },
+        {
+            "age": 29,
+            "name": "Estes Lindsey",
+            "dob": "2015-08-10T10:49:26 -06:-30",
+            "salary": 2007
+        },
+        {
+            "age": 23,
+            "name": "Isabella Wilder",
+            "dob": "2014-07-23T04:12:11 -06:-30",
+            "salary": 3244
+        },
+        {
+            "age": 23,
+            "name": "Taylor Gross",
+            "dob": "2018-09-26T11:27:43 -06:-30",
+            "salary": 4281
+        },
+        {
+            "age": 32,
+            "name": "Annmarie Collier",
+            "dob": "2015-03-21T02:08:30 -06:-30",
+            "salary": 946
+        }
+
+
+    ]
+
+
+    console.log(emp_obj);
+
+    //filter all employees with salary greater than 5000
+const result=emp_obj.filter(emp => emp.salary >5000);
+console.log(result);
+
+//group employee on the basis of their age
+var grp_age={};
+for(i in emp_obj){
+    if(!grp_age[emp_obj[i].age]){
+        grp_age[emp_obj[i].age]=[];
+    
+    }
+    grp_age[emp_obj[i].age].push(emp_obj[i]);
+}
+console.log(grp_age);
+
+//fetch employees with salary less than 1000 and age greater than 20. Then give them an increment 5 times their salary.
+const newEmpData = emp_obj.filter(emp =>emp.salary<1000 && emp.age>20);
+newEmpData.map(emp=>emp.salary*=5);
+console.log(newEmpData);
+
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>
