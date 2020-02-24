@@ -8,11 +8,11 @@
     tools:context=".LoginActivity"
     android:background="@drawable/img"
     >
-
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
@@ -135,11 +135,9 @@
 
 
 
-
-
-
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
+
     </FrameLayout>
+
 </RelativeLayout>
