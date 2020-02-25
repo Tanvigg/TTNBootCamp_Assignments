@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText login_emailEditText,login_passwordEditText;
     private String email,passwd;
     private AppCompatCheckBox checkBox;
+    private TextView btn_register;
 
 
     @Override
@@ -54,19 +56,13 @@ public class LoginActivity extends AppCompatActivity {
         login_emailEditText = findViewById(R.id.login_email);
         login_passwordEditText = findViewById(R.id.login_password);
         checkBox = findViewById(R.id.checkbox);
+        btn_register = findViewById(R.id.btn_register);
 
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    //show password
-                    login_passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            public void onClick(View v) {
 
-                }
-                else{
-                    //hide password
-                    login_passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
             }
         });
     }

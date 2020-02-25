@@ -23,16 +23,16 @@ android {
     }
     flavorDimensions "environment"
 
-    productFlavors{
-        QA{
+    productFlavors {
+        QA {
             applicationId "com.example.bootcampproject1.QA"
 
         }
-        Dev{
+        Dev {
             applicationId "com.example.bootcampproject1.Dev"
 
         }
-        PROD{
+        PROD {
             applicationId "com.example.bootcampproject1.PROD"
 
         }
@@ -51,7 +51,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.google.android.material:material:1.0.0-rc01'
-
 
 
 }
