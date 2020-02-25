@@ -87,13 +87,23 @@
                         android:backgroundTint="@color/blue_400"
                         android:drawableRight="@drawable/password"
                         android:hint="@string/password"
-                        android:inputType="textEmailAddress"
+                        android:inputType="textPassword"
                         android:outlineSpotShadowColor="@color/blue_400"
                         android:padding="4dp"
                         android:textColor="@color/text_color"
                         android:textColorHint="@color/blue_400" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Show Password"
+                    android:padding="4dp"
+                    android:layout_marginLeft="18dp"
+                    />
 
                 <TextView
                     android:id="@+id/btn_reset_password"
@@ -117,7 +127,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="0dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/btn_rounded"
                     android:text="LOGIN"
                     android:textColor="#ffffff"

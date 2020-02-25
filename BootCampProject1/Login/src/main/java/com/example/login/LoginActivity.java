@@ -1,13 +1,17 @@
 package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatCheckBox;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.TextureView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.google.android.material.textfield.TextInputLayout;
@@ -16,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login_button;
     private EditText login_emailEditText,login_passwordEditText;
     private String email,passwd;
+    private AppCompatCheckBox checkBox;
 
 
     @Override
@@ -48,6 +53,22 @@ public class LoginActivity extends AppCompatActivity {
         login_button =  findViewById(R.id.login_button);
         login_emailEditText = findViewById(R.id.login_email);
         login_passwordEditText = findViewById(R.id.login_password);
+        checkBox = findViewById(R.id.checkbox);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //show password
+                    login_passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                }
+                else{
+                    //hide password
+                    login_passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
     }
 
     public boolean validateEmail(){
