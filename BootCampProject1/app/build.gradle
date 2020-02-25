@@ -11,12 +11,33 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+
     }
+
+    flavorDimensions "environment"
+
+    productFlavors{
+        QA{
+            applicationId "com.example.bootcampproject1.QA"
+
+        }
+        Dev{
+            applicationId "com.example.bootcampproject1.Dev"
+
+        }
+        PROD{
+            applicationId "com.example.bootcampproject1.PROD"
+
+        }
+    }
+
 }
 
 dependencies {
