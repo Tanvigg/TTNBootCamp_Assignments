@@ -21,6 +21,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "environment"
+
+    productFlavors{
+        QA{
+            applicationId "com.example.bootcampproject1.QA"
+
+        }
+        Dev{
+            applicationId "com.example.bootcampproject1.Dev"
+
+        }
+        PROD{
+            applicationId "com.example.bootcampproject1.PROD"
+
+        }
+    }
+
 
 }
 
