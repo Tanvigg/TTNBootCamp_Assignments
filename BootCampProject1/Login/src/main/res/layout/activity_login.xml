@@ -20,9 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:elevation="10dp"
-            app:cardCornerRadius="5dp"
-
-            >
+            app:cardCornerRadius="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,9 +34,11 @@
                     android:layout_width="@dimen/logo_w_h"
                     android:layout_height="@dimen/logo_w_h"
                     android:layout_margin="14dp"
-                    android:src="@drawable/login" />
+                    android:src="@drawable/login"
+                    android:transitionName="logo_image"/>
 
                 <TextView
+                    android:id="@+id/login_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="LOGIN"
@@ -47,7 +47,8 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="14dp"
-                    android:fontFamily="serif"/>
+                    android:fontFamily="serif"
+                    android:transitionName="logo_text"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,7 +61,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/hint_email"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:transitionName="email_trans">
 
 
                     <EditText
@@ -80,7 +82,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:passwordToggleEnabled="true"
                     android:hint="@string/password"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:transitionName="password_trans">
 
 
                     <EditText
@@ -124,7 +127,8 @@
                     android:text="LOGIN"
                     android:layout_margin="25dp"
                     android:textColor="#ffffff"
-                    android:fontFamily="serif"/>
+                    android:fontFamily="serif"
+                    android:transitionName="button_tran"/>
 
 
                 <TextView
@@ -141,7 +145,8 @@
                     android:textAllCaps="false"
                     android:textColor="#011A25"
                     android:textStyle="bold"
-                    android:fontFamily="serif"/>
+                    android:fontFamily="serif"
+                    android:transitionName="login_trans"/>
 
 
             </LinearLayout>
