@@ -11,12 +11,11 @@
         android:layout_width="383dp"
         android:layout_height="220dp"
         android:layout_marginTop="4dp"
-        android:background="@drawable/background_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img1" />
+        />
 
     <TextView
         android:id="@+id/heading"
@@ -25,7 +24,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/gentium_book_basic"
-        android:text="THE TIMES OF INDIA"
         android:textColor="#000"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -37,7 +35,6 @@
         android:layout_width="296dp"
         android:layout_height="93dp"
         android:layout_marginStart="16dp"
-        android:text="Delhi Violence : Sonia Seeks Amit Shah's Resignation; BJP calls it Dirty Politics"
         android:textColor="#000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"

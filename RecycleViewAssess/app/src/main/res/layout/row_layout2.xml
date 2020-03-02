@@ -12,7 +12,6 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/gentium_book_basic"
-        android:text="FIRSTPOST"
         android:textColor="#000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -31,20 +30,18 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/heading"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        />
 
     <TextView
         android:id="@+id/content"
         android:layout_width="264dp"
         android:layout_height="120dp"
         android:fontFamily="@font/gentium_book_basic"
-        android:text="With no trade deal signed,Donald Trump-Narendra Modi jamboore was about two men and not about two countries"
         android:textColor="#000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.244"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/heading" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
