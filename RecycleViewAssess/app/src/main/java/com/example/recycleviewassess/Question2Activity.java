@@ -39,9 +39,10 @@ public class Question2Activity extends AppCompatActivity {
         {
             data.add(new MyModel("The Times of India", "World prepares for coronavirus pandemic; global recession feared", MyModel.ONE_TYPE, R.drawable.img1));
             //            data.add(new Model(Model.SMALL_BANNER_TYPE, R.drawable.image2, "Hindustan Times","India vs New Zealand prediction: India predicted XI for 2nd Test - Virat Kohli could opt for two big..."));
-            //            data.add(new Model(Model.SMALL_BANNER_TYPE, R.drawable.image3, "Engadget","Facebook is suing a shady SDK developer."));
             //            data.add(new Model(Model.BANNER_TYPE, R.drawable.image1, "The Times of India","World prepares for coronavirus pandemic; global recession feared"));
             data.add(new MyModel("Hindustan Times", "India vs New Zealand prediction: India predicted XI for 2nd Test - Virat Kohli could opt for two big...", MyModel.TWO_TYPE, R.drawable.img));
+            data.add(new MyModel("Engadget","Facebook is suing a shady SDK developer.", MyModel.TWO_TYPE, R.drawable.fb));
+
             //            data.add(new Model(Model.SMALL_BANNER_TYPE, R.drawable.image3, "Engadget","Facebook is suing a shady SDK developer."));
             //        }
             return data;
