@@ -1,0 +1,6 @@
+rootProject.name='FragmentAssess'
+include ':app'
+include ':question1'
+include ':question2'
+include ':question3'
+include ':Question4'

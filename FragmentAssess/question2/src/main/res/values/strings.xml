@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Question2</string>
+    <string name="fragment2">Fragment 2</string>
+    <string name="fragment1">Fragment 1</string>
+    <string name="hide">HIDE</string>
+    <string name="show">SHOW</string>
+    <string name="remove">REMOVE</string>
+    <string name="fragmentlc">Fragment LifeCycle</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragement1text">Fragment 1</string>
+    <string name="fragment2text">Fragment 2</string>
+</resources>

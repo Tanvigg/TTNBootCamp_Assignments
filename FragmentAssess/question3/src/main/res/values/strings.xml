@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Question3</string>
+    <string name="text">This is an Activity</string>
+    <string name="open">Open Dialog</string>
+    <string name="desc">Enter a description for this picture..</string>
+    <string name="custom">Your Custom Dialog Box</string>
+    
+    
+    <string-array name="lists">
+        <item>Item One</item>
+        <item>Item Two</item>
+        <item>Item Three</item>
+        <item>Item Four</item>
+        <item>Item Five</item>
+
+
+
+
+    </string-array>
+
+</resources>
+
