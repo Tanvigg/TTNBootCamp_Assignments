@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 import com.example.roomdatabaseassess.model.EmployeeModel;
 import com.example.roomdatabaseassess.util.Constants;
 
-@androidx.room.Database(entities = {EmployeeModel.class}, version = 1)  //step1
+@androidx.room.Database(entities = {EmployeeModel.class}, version = 2)  //step1
 public abstract class EmployeeDatabase extends RoomDatabase {
     public abstract EmployeeDao getemployeeDao(); //step2
 

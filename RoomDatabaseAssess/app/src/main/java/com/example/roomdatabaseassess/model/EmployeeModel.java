@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class EmployeeModel implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    public Long uId;
+    public int uId;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -28,11 +28,11 @@ public class EmployeeModel implements Serializable {
     private String mobile;
 
 
-    public Long getuId() {
+    public int getuId() {
         return uId;
     }
 
-    public void setuId(Long uId) {
+    public void setuId(int uId) {
         this.uId = uId;
     }
 
