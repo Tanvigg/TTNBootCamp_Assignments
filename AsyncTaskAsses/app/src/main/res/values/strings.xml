@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AsyncTaskAsses</string>
+    <string name="download_image">Download Image</string>
+    <string name="download_image_using_service">Download Image using Service</string>
+</resources>
