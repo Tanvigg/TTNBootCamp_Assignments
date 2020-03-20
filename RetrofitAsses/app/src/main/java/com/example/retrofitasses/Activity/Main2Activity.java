@@ -83,6 +83,7 @@ public class Main2Activity extends AppCompatActivity {
         clear_data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.GONE);
                 data_list.setVisibility(View.GONE);
             }
         });
@@ -97,6 +98,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 if (response.body() != null) {
                     progressBar.setVisibility(View.GONE);
+                    data_list.setVisibility(View.VISIBLE);
                     Data data = response.body();
                     List<PostsItem> posts = data.getPosts();
                     postsItems.addAll(posts);
@@ -162,17 +164,17 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            data_list.setVisibility(View.VISIBLE);
 
             Gson gson = new Gson();
 
-            Data data = gson.fromJson(result,Data.class);
-
-
-            adapter = new dataAdapter(Main2Activity.this, data);
+            Data data = gson.fromJson(result, Data.class);
+            adapter = new dataAdapter(Main2Activity.this, data.getPosts());
             LinearLayoutManager layoutManager = new LinearLayoutManager(Main2Activity.this, RecyclerView.VERTICAL, false);
             data_list.setLayoutManager(layoutManager);
             data_list.setItemAnimator(new DefaultItemAnimator());
             data_list.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
 
 
