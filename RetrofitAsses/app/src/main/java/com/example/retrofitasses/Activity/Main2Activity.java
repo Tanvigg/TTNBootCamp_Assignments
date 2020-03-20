@@ -17,6 +17,7 @@ import com.example.retrofitasses.Model.Data;
 import com.example.retrofitasses.Model.PostsItem;
 import com.example.retrofitasses.Network.ApiClient;
 import com.example.retrofitasses.R;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -161,7 +162,13 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            adapter = new dataAdapter(Main2Activity.this, postsItems);
+
+            Gson gson = new Gson();
+
+            Data data = gson.fromJson(result,Data.class);
+
+
+            adapter = new dataAdapter(Main2Activity.this, data);
             LinearLayoutManager layoutManager = new LinearLayoutManager(Main2Activity.this, RecyclerView.VERTICAL, false);
             data_list.setLayoutManager(layoutManager);
             data_list.setItemAnimator(new DefaultItemAnimator());
