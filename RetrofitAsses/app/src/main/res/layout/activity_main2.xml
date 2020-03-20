@@ -25,13 +25,26 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:background="#E91E63"
         android:gravity="center"
         android:text="Load Data using Retrofit"
         android:textColor="#fff"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/clear_data"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Clear Data"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:background="#EC0909"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Main2Activity extends AppCompatActivity {
-    private Button button_load;
+    private Button button_load,clear_data;
     private RecyclerView data_list;
     private HttpURLConnection httpURLConnection = null;
     private URL url;
@@ -51,6 +51,7 @@ public class Main2Activity extends AppCompatActivity {
         button_load2 = findViewById(R.id.load_dataButton2);
         data_list = findViewById(R.id.data_list);
         progressBar = findViewById(R.id.progressbar);
+        clear_data = findViewById(R.id.clear_data);
 
 
         button_load.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +78,14 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
 
+        clear_data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                data_list.setVisibility(View.GONE);
+                button_load2.setVisibility(View.VISIBLE);
+            }
+        });
+
 
     }
 
@@ -87,6 +96,7 @@ public class Main2Activity extends AppCompatActivity {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 if (response.body() != null) {
                     progressBar.setVisibility(View.GONE);
+                    button_load2.setVisibility(View.GONE);
                     Data data = response.body();
                     List<PostsItem> posts = data.getPosts();
                     postsItems.addAll(posts);
