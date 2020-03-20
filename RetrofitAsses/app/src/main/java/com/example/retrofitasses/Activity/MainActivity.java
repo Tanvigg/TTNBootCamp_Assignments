@@ -2,6 +2,8 @@ package com.example.retrofitasses.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private HttpURLConnection httpURLConnection = null;
     private URL url;
-    private BufferedReader reader = null;
 
 
     @Override
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         clicktoLoadImage = findViewById(R.id.text);
         buttonHttp = findViewById(R.id.button);
         progressBar = findViewById(R.id.progressbar);
-        reset_button =  findViewById(R.id.reset_button);
+        reset_button = findViewById(R.id.reset_button);
 
 
         clicktoLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -70,27 +71,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public class ImageDownloadTask extends AsyncTask<String, String, String> {
+    public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
 
         @Override
-        protected String doInBackground(String... params) {
+        protected Bitmap doInBackground(String... params) {
+            Bitmap bitmap = null;
             try {
                 url = new URL(params[0]);
                 httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.connect();
-
-
                 InputStream inputStream = httpURLConnection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuffer buffer = new StringBuffer();
-                String line = "";
-
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line);
-
-                }
-                return buffer.toString();
-
+                bitmap = BitmapFactory.decodeStream(inputStream);
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -102,25 +93,17 @@ public class MainActivity extends AppCompatActivity {
                     httpURLConnection.disconnect();
                 }
 
-                try {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
 
 
-            return null;
+            return bitmap;
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
-
-            Glide.with(MainActivity.this).asBitmap().load(result).into(imageView);
-
+            imageView.setImageBitmap(result);
         }
 
 
