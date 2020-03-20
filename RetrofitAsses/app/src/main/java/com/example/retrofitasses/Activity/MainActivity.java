@@ -2,6 +2,7 @@ package com.example.retrofitasses.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -24,7 +25,7 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
-    private Button clicktoLoadImage, buttonHttp, reset_button;
+    private Button clicktoLoadImage, buttonHttp, reset_button,switch_button;
     private ProgressBar progressBar;
     private HttpURLConnection httpURLConnection = null;
     private URL url;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         buttonHttp = findViewById(R.id.button);
         progressBar = findViewById(R.id.progressbar);
         reset_button = findViewById(R.id.reset_button);
+        switch_button = findViewById(R.id.switchbtn);
 
 
         clicktoLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        switch_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
