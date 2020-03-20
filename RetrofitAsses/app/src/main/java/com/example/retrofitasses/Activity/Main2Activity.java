@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Main2Activity extends AppCompatActivity {
-    private Button button_load,clear_data;
+    private Button button_load, clear_data;
     private RecyclerView data_list;
     private HttpURLConnection httpURLConnection = null;
     private URL url;
@@ -57,6 +57,7 @@ public class Main2Activity extends AppCompatActivity {
         button_load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 new DataLoadTask().execute("https://storage.googleapis.com/network-security-conf-codelab.appspot.com/v2/posts.json");
 
 
@@ -82,7 +83,6 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 data_list.setVisibility(View.GONE);
-                button_load2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -96,7 +96,6 @@ public class Main2Activity extends AppCompatActivity {
             public void onResponse(Call<Data> call, Response<Data> response) {
                 if (response.body() != null) {
                     progressBar.setVisibility(View.GONE);
-                    button_load2.setVisibility(View.GONE);
                     Data data = response.body();
                     List<PostsItem> posts = data.getPosts();
                     postsItems.addAll(posts);
@@ -162,7 +161,6 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             adapter = new dataAdapter(Main2Activity.this, postsItems);
             LinearLayoutManager layoutManager = new LinearLayoutManager(Main2Activity.this, RecyclerView.VERTICAL, false);
             data_list.setLayoutManager(layoutManager);
