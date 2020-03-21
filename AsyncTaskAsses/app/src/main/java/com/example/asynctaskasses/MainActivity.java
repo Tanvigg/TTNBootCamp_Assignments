@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.graphics.EmbossMaskFilter;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
@@ -14,6 +15,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +37,8 @@ import java.net.NetworkInterface;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.PublicKey;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnShowProgress,btnShowProgress1;
@@ -79,11 +84,35 @@ public class MainActivity extends AppCompatActivity {
         btnShowProgress1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-
+                Intent intent = new Intent(MainActivity.this,DownloadImageService.class);
+                intent.putExtra("url", image_url);
+                intent.putExtra("receiver", new DownloadReceiver(new Handler()));
+                startService(intent);
             }
         });
     }
+
+
+    private class DownloadReceiver extends ResultReceiver {
+        public DownloadReceiver(Handler handler) {
+            super(handler);
+        }
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            if (resultCode == DownloadImageService.UPDATE_PROGRESS) {
+                int progress = resultData.getInt("progress"); //get the progress
+//                mProgressDialog.setProgress(progress);
+                progressBar.setProgress(progress);
+                progressText.setText(progress +"%");
+                if (progress == 100) {
+                    imageView.setImageBitmap(BitmapFactory.decodeFile(getExternalStorageDirectory().getAbsolutePath() + "/" + "myImage1.jpg"));
+//                    mProgressDialog.dismiss();
+                }
+            }
+        }
+    }
+
 
     private boolean isConnected() {
         Context context = getApplicationContext();
@@ -141,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 file_length = urlConnection.getContentLength();
 
                 Log.i("Info:Path", Integer.toString(file_length));
-                File new_folder = new File(Environment.getExternalStorageDirectory() + "/myFolder");
+                File new_folder = new File(getExternalStorageDirectory() + "/myFolder");
                 Log.i("Info:Path", new_folder.toString());
                 if (!new_folder.exists()) {
                     if (new_folder.mkdir()) {
@@ -226,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             //progressDialog.hide();
-            File folder = new File(Environment.getExternalStorageDirectory() + "/myFolder");
+            File folder = new File(getExternalStorageDirectory() + "/myFolder");
             File output_file = new File(folder, "downloaded_image.jpg");
 
             String path = output_file.toString();

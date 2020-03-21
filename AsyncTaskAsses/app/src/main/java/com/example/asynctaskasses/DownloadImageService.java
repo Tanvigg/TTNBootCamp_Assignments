@@ -4,113 +4,98 @@ import android.app.IntentService;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.util.BuddhistCalendar;
-import android.net.Uri;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.ParcelUuid;
-import android.webkit.URLUtil;
+import android.os.ResultReceiver;
 
 import androidx.annotation.Nullable;
 
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import java.net.URL;
+import java.net.URLConnection;
+
+import static android.os.Environment.getExternalStorageDirectory;
+
 public class DownloadImageService extends IntentService {
-    /**
-     * Debugging tag used by the Android logger.
-     */
-    private final String TAG = getClass().getSimpleName();
-
-    /**
-     * String constant used to extract the Messenger "extra" from an
-     * intent.
-     */
-    private static final String MESSANGER = "MESSANGER";
-
-    /**
-     * String constant used to extract the pathname to a downloaded
-     * image from a Bundle.
-     */
-    private static final String IMAGE_PATHNAME = "IMAGE_PATHNAME";
-
-    /**
-     * String constant used to extract the request code.
-     */
-    private static final String REQUEST_CODE = "REQUEST_CODE";
-
-    /**
-     * String constant used to extract the URL to an image from a
-     * Bundle.
-     */
-    private static final String IMAGE_URL = "IMAGE_URL";
-
-    /**
-     * String constant used to extract the directory pathname to use
-     * to store a downloaded image.
-     */
-    private static final String DIRECTORY_PATHNAME = "DIRECTORY_PATHNAME";
+    public static final int UPDATE_PROGRESS = 0;
 
     public DownloadImageService() {
-        super("DownloadImageService");
+        super("DownloaderService");
     }
-
-
-    public static Intent makeIntent(Context context, int requestCode, Uri url, String directoryPathname, Handler downloadHandler) {
-
-        //Create an intent that will download the image from the web.
-        Intent intent = new Intent(context, DownloadImageService.class);
-        intent.setData(url);
-        intent.putExtra(MESSANGER, new Messenger(downloadHandler));
-        intent.putExtra(DIRECTORY_PATHNAME, directoryPathname);
-        return intent;
-
-
-    }
-
-
-    /**
-     * Helper method that returns the path to the image file if it is
-     * download successfully.
-     */
-
-    public static String getImagePathname(Bundle data) {
-        return data.getString(IMAGE_PATHNAME);
-
-    }
-
-
-    public static int getResultCode(Message message) {
-        return message.arg1;
-    }
-
-    /**
-     * Helper method that returns the request code associated with
-     * the @a message.
-     */
-
-    public static int getRequestCode(Message message) {
-        Bundle data = message.getData();
-        return data.getInt(REQUEST_CODE);
-
-    }
-
-
-    /**
-     * Helper method that returns the URL to the image file.
-     */
-    public static String getImageURL(Bundle data) {
-        return data.getString(IMAGE_URL);
-
-
-    }
-
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        final Uri uri = intent.getData();
+        String urlToDownload = intent.getStringExtra("url");
+        ResultReceiver resultReceiver = (ResultReceiver) intent.getParcelableExtra("receiver");
+        try {
+            //create url and connect
+            URL url = new URL(urlToDownload);
+            URLConnection connection = url.openConnection();
+            connection.connect();
 
-        final String directoryPath  = (String) intent.getExtras().get(DIRECTORY_PATHNAME);
+            // this will be useful so that you can show a typical 0-100% progress bar
+            int fileLength = connection.getContentLength();
+
+            // download the file
+            InputStream input = new BufferedInputStream(connection.getInputStream());
+
+            String path = getExternalStorageDirectory().getAbsolutePath() + "/" + "myImage1.jpg";
+            OutputStream output = new FileOutputStream(path);
+
+            byte data[] = new byte[1024];
+            long total = 0;
+            int count;
+            while ((count = input.read(data)) != -1) {
+                try {
+                    Thread.sleep(100); //just to slow down the process for obsservations
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                while (!isConnected()) {
+
+                }
+                total += count;
+
+                // publishing the progress....
+                Bundle resultData = new Bundle();
+                resultData.putInt("progress", (int) (total * 100 / fileLength));
+                resultReceiver.send(UPDATE_PROGRESS, resultData);
+                output.write(data, 0, count);
+            }
+            // close streams
+            output.flush();
+            output.close();
+            input.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Bundle resultData = new Bundle();
+        resultData.putInt("progress", 100);
+
+        resultReceiver.send(UPDATE_PROGRESS, resultData);
 
     }
+
+    public boolean isConnected() {
+        Context context = getApplicationContext();
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Service.CONNECTIVITY_SERVICE);
+        if (connectivity != null) {
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null) {
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
