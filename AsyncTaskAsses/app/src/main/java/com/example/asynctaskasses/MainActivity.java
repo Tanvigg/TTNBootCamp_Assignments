@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
         }
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-            super.onReceiveResult(resultCode, resultData);
+            progressBar.setAlpha(1);
+            progressText.setAlpha(1);
             if (resultCode == DownloadImageService.UPDATE_PROGRESS) {
                 int progress = resultData.getInt("progress"); //get the progress
 //                mProgressDialog.setProgress(progress);
