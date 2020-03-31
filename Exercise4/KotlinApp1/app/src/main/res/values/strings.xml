@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LoginApp</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="signup">Sign Up</string>
+    <string name="ice_cream">Ice Cream Sundae</string>
+    <string name="new_york">145, New York City</string>
+</resources>
