@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">DataBinding</string>
+    <string-array name="names">
+        <item>Tanvi Gupta</item>
+        <item>Ashutosh Shrivastava</item>
+        <item>Anupam Bharadwaj</item>
+        <item>Lakshay Sharma</item>
+        <item>Subarno Chatterji</item>
+    </string-array>
+
+
+    <string-array name="emails">
+        <item>guptatannu.34@gmail.com</item>
+        <item>ashutosh.shrivastava01@ymail.com</item>
+        <item>aunupam01.bharawaj@hotmail.com</item>
+        <item>lakshaySharma96@gmail.com</item>
+        <item>suboChatterji@hotmail.com</item>
+    </string-array>
+
+    <string-array name="phoneNumber">
+        <item>9876543210</item>
+        <item>9876543210</item>
+        <item>9876543210</item>
+        <item>9876543210</item>
+        <item>9876543210</item>
+
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
