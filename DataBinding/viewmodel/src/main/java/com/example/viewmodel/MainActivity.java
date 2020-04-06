@@ -1,5 +1,6 @@
 package com.example.viewmodel;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         Button btColor = findViewById(R.id.btColor);
         model = ViewModelProviders.of(this).get(MainActivityColorGenerator.class);
         color= model.getColor();
+
+        int orientation  = getResources().getConfiguration().orientation;
+        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            btColor.setVisibility(View.GONE);
+            parent.setBackgroundColor(color);
+        }
+
 
         btColor.setOnClickListener(new View.OnClickListener() {
             @Override
