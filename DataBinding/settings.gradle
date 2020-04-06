@@ -1,2 +1,3 @@
 rootProject.name='DataBinding'
 include ':app'
+include ':viewmodel'
