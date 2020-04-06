@@ -30,26 +30,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        parent =  findViewById(R.id.parent);
+        parent = findViewById(R.id.parent);
 
         Button btColor = findViewById(R.id.btColor);
         model = ViewModelProviders.of(this).get(MainActivityColorGenerator.class);
-        color= model.getColor();
+        color = model.getColor();
 
-        int orientation  = getResources().getConfiguration().orientation;
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             btColor.setVisibility(View.GONE);
             parent.setBackgroundColor(color);
+        } else {
+            btColor.setVisibility(View.VISIBLE);
+            btColor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    parent.setBackgroundColor(color);
+                }
+            });
         }
-
-
-        btColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                parent.setBackgroundColor(color);
-            }
-        });
     }
-
 }
 
