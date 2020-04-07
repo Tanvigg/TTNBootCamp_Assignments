@@ -6,9 +6,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.livedata.data.User;
+import com.example.livedata.databinding.RowLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +24,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @NonNull
     @Override
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-        return new UserHolder(itemView);
+        RowLayoutBinding rowLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.row_layout,parent,false);
+        return new UserHolder(rowLayoutBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
         User user = users.get(position);
-        holder.name.setText(user.getName());
-        holder.email.setText(user.getEmail());
-        holder.phone.setText(user.getPhone());
+        holder.rowLayoutBinding.setUser(user);
 
     }
 
@@ -50,14 +50,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     }
 
     class UserHolder extends RecyclerView.ViewHolder {
-        private TextView name, email, phone;
+        RowLayoutBinding rowLayoutBinding;
 
-        public UserHolder(@NonNull View itemView) {
-            super(itemView);
-            name = itemView.findViewById(R.id.textView_name);
-            email = itemView.findViewById(R.id.textView_email);
-            phone = itemView.findViewById(R.id.textView_mobile);
-            itemView.setOnClickListener(new View.OnClickListener() {
+        public UserHolder(@NonNull RowLayoutBinding itemView) {
+            super(itemView.getRoot());
+
+            rowLayoutBinding = itemView;
+            itemView.getRoot().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
